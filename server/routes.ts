@@ -35,14 +35,14 @@ export async function registerRoutes(
       price: 20,
       category: "Main",
       description: "Authentic French tacos with cheese sauce and fries",
-      imageUrl: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=800&q=80"
+      imageUrl: null
     });
     await storage.createMenuItem({
       name: "Mkloub",
       price: 10,
       category: "Sandwich",
       description: "Traditional Tunisian folded pizza dough sandwich",
-      imageUrl: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80" // Using a pizza/flatbread image as proxy
+      imageUrl: null
     });
   }
 
