@@ -30,20 +30,19 @@ export async function registerRoutes(
   // Seed data
   const existing = await storage.getMenuItems();
   if (existing.length === 0) {
-    await storage.createMenuItem({
-      name: "Tacos",
-      price: 20,
-      category: "Main",
-      description: "Authentic French tacos with cheese sauce and fries",
-      imageUrl: "/assets/tacos.jpg"
-    });
-    await storage.createMenuItem({
-      name: "Mkloub",
-      price: 10,
-      category: "Sandwich",
-      description: "Traditional Tunisian folded pizza dough sandwich",
-      imageUrl: "/assets/mkloub.jpg"
-    });
+    const items = [
+      { name: "Chicha Luxe", price: 15, category: "chicha", description: "Chicha avec goût au choix", imageUrl: null },
+      { name: "Chicha Simple", price: 10, category: "chicha", description: "Chicha classique", imageUrl: null },
+      { name: "Tacos", price: 20, category: "salés", description: "Authentic French tacos", imageUrl: null },
+      { name: "Mkloub", price: 10, category: "salés", description: "Traditional Tunisian sandwich", imageUrl: null },
+      { name: "Jus d'Orange", price: 8, category: "jus", description: "Frais et naturel", imageUrl: null },
+      { name: "Jus de Fraise", price: 9, category: "jus", description: "Saisonier et rafraîchissant", imageUrl: null },
+      { name: "Espresso", price: 4, category: "caffé", description: "Café intense", imageUrl: null },
+      { name: "Direct", price: 5, category: "caffé", description: "Café au lait", imageUrl: null },
+    ];
+    for (const item of items) {
+      await storage.createMenuItem(item);
+    }
   }
 
   return httpServer;

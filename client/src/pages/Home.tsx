@@ -75,10 +75,32 @@ export default function Home() {
               <p className="text-muted-foreground mt-2">Be the first to add something delicious!</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-              {items?.map((item, index) => (
-                <MenuCard key={item.id} item={item} index={index} />
-              ))}
+            <div className="space-y-16">
+              {['chicha', 'salés', 'jus', 'caffé'].map((category) => {
+                const categoryItems = items?.filter(item => item.category.toLowerCase() === category.toLowerCase());
+                if (!categoryItems || categoryItems.length === 0) return null;
+                
+                return (
+                  <div key={category} className="space-y-8">
+                    <h3 className="text-2xl font-display font-bold border-b pb-2 capitalize">
+                      {category}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {categoryItems.map((item) => (
+                        <div key={item.id} className="flex justify-between items-center p-4 border rounded-lg bg-card hover:bg-accent/5 transition-colors">
+                          <div className="space-y-1">
+                            <h4 className="font-bold">{item.name}</h4>
+                            <p className="text-sm text-muted-foreground">{item.description}</p>
+                          </div>
+                          <div className="text-lg font-bold text-primary">
+                            {item.price} DT
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </section>
