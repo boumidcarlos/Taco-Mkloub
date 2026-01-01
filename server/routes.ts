@@ -42,7 +42,7 @@ export async function registerRoutes(
       price: 10,
       category: "Sandwich",
       description: "Traditional Tunisian folded pizza dough sandwich",
-      imageUrl: null
+      imageUrl: "/assets/mkloub.jpg"
     });
   }
 
