@@ -35,7 +35,7 @@ export async function registerRoutes(
       price: 20,
       category: "Main",
       description: "Authentic French tacos with cheese sauce and fries",
-      imageUrl: null
+      imageUrl: "/assets/tacos.jpg"
     });
     await storage.createMenuItem({
       name: "Mkloub",
