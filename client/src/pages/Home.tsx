@@ -1,9 +1,19 @@
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { Loader2, QrCode } from "lucide-react";
 import { useMenuItems } from "@/hooks/use-menu";
 import { MenuCard } from "@/components/MenuCard";
 import { Header } from "@/components/Header";
 import { AddMenuItem } from "@/components/AddMenuItem";
+import { useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const { data: items, isLoading, error } = useMenuItems();
@@ -20,7 +30,35 @@ export default function Home() {
               <h2 className="text-3xl font-display font-bold text-foreground">Our Special Menu</h2>
               <p className="text-muted-foreground mt-2">Prepared fresh daily just for you</p>
             </div>
-            <AddMenuItem />
+            <div className="flex gap-4">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="flex gap-2">
+                    <QrCode className="w-4 h-4" />
+                    Menu QR Code
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="text-center">Scan for Menu</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col items-center justify-center p-6 gap-4">
+                    <div className="bg-white p-4 rounded-xl border border-border shadow-sm">
+                      <QRCodeSVG 
+                        value={window.location.href} 
+                        size={200}
+                        level="H"
+                        includeMargin={true}
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground text-center">
+                      Customers can scan this code to view the menu on their phones.
+                    </p>
+                  </div>
+                </DialogContent>
+              </Dialog>
+              <AddMenuItem />
+            </div>
           </div>
 
           {isLoading ? (
