@@ -107,8 +107,8 @@ export default function Home() {
 
       <footer className="bg-secondary/50 border-t border-border mt-auto">
         <div className="container mx-auto px-4 py-12 text-center text-muted-foreground">
-          <p className="font-display text-lg font-medium text-foreground mb-4">el ostath</p>
-          <p>© 2024 el ostath Restaurant. All rights reserved.</p>
+          <p className="font-display text-lg font-medium text-foreground mb-4">el ostadh</p>
+          <p>© 2024 el ostadh Restaurant. All rights reserved.</p>
         </div>
       </footer>
     </div>

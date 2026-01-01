@@ -9,7 +9,7 @@ export function Header() {
             <UtensilsCrossed className="w-6 h-6" />
           </div>
           <h1 className="font-display text-2xl font-bold text-foreground">
-            el ostath
+            el ostadh
           </h1>
         </div>
         
