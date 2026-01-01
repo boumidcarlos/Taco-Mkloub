@@ -15,11 +15,6 @@ export function Header() {
         
         <nav className="hidden md:flex gap-6 items-center">
           <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Menu</a>
-          <a href="#" className="text-sm font-medium hover:text-primary transition-colors">About</a>
-          <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Contact</a>
-          <button className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 text-sm">
-            Book Table
-          </button>
         </nav>
       </div>
     </header>
