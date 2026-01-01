@@ -23,9 +23,11 @@ export default function Home() {
       <Header />
       
       <main className="flex-1 bg-background px-8 py-12">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-display font-bold uppercase tracking-widest text-primary mb-2">Restaurant</h2>
-          <h2 className="text-4xl font-display font-bold uppercase tracking-widest text-primary">Menu</h2>
+        <div className="flex flex-col items-center mb-16 gap-6">
+          <h2 className="text-4xl font-display font-bold uppercase tracking-widest text-primary">el ostedh</h2>
+          <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-primary/20">
+            <img src="/assets/logo.jpg" alt="el ostedh logo" className="w-full h-full object-cover" />
+          </div>
         </div>
 
         {/* Menu Section */}
