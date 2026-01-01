@@ -8,7 +8,7 @@ export function Header() {
           <div className="bg-primary text-primary-foreground p-2 rounded-lg">
             <UtensilsCrossed className="w-6 h-6" />
           </div>
-          <h1 className="font-display text-2xl font-bold bg-gradient-to-r from-primary to-orange-600 bg-clip-text text-transparent">
+          <h1 className="font-display text-2xl font-bold text-foreground">
             el ostath
           </h1>
         </div>
