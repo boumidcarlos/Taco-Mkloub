@@ -57,7 +57,6 @@ export default function Home() {
                   </div>
                 </DialogContent>
               </Dialog>
-              <AddMenuItem />
             </div>
           </div>
 
