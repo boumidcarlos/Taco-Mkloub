@@ -87,7 +87,7 @@ export default function Home() {
                             <h4 className="font-bold text-lg text-primary">{item.name}</h4>
                             <div className="flex-1 mx-2 border-b border-dotted border-primary/20" />
                             <div className="font-bold text-primary">
-                              ${item.price}
+                              {item.price} DT
                             </div>
                           </div>
                           <p className="text-sm text-muted-foreground leading-tight italic">
