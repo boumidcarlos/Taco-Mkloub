@@ -19,45 +19,40 @@ export default function Home() {
   const { data: items, isLoading, error } = useMenuItems();
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-sans">
+    <div className="min-h-screen bg-background flex flex-col font-sans max-w-2xl mx-auto shadow-2xl">
       <Header />
       
-      <main className="flex-1">
+      <main className="flex-1 bg-background px-8 py-12">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-display font-bold uppercase tracking-widest text-primary mb-2">Restaurant</h2>
+          <h2 className="text-4xl font-display font-bold uppercase tracking-widest text-primary">Menu</h2>
+        </div>
+
         {/* Menu Section */}
-        <section className="container mx-auto px-4 md:px-6 py-16 relative z-20">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-            <div>
-              <h2 className="text-3xl font-display font-bold text-foreground">Our Special Menu</h2>
-              <p className="text-muted-foreground mt-2">Prepared fresh daily just for you</p>
-            </div>
-            <div className="flex gap-4">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="flex gap-2">
-                    <QrCode className="w-4 h-4" />
-                    Menu QR Code
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle className="text-center">Scan for Menu</DialogTitle>
-                  </DialogHeader>
-                  <div className="flex flex-col items-center justify-center p-6 gap-4">
-                    <div className="bg-white p-4 rounded-xl border border-border shadow-sm">
-                      <QRCodeSVG 
-                        value={window.location.href} 
-                        size={200}
-                        level="H"
-                        includeMargin={true}
-                      />
-                    </div>
-                    <p className="text-sm text-muted-foreground text-center">
-                      Customers can scan this code to view the menu on their phones.
-                    </p>
+        <section className="relative z-20">
+          <div className="flex justify-center mb-10">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="sm" className="flex gap-2 text-muted-foreground opacity-50 hover:opacity-100">
+                  <QrCode className="w-4 h-4" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-center">Scan for Menu</DialogTitle>
+                </DialogHeader>
+                <div className="flex flex-col items-center justify-center p-6 gap-4">
+                  <div className="bg-white p-4 rounded-xl border border-border shadow-sm">
+                    <QRCodeSVG 
+                      value={window.location.href} 
+                      size={200}
+                      level="H"
+                      includeMargin={true}
+                    />
                   </div>
-                </DialogContent>
-              </Dialog>
-            </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
 
           {isLoading ? (
@@ -71,29 +66,31 @@ export default function Home() {
           ) : items?.length === 0 ? (
             <div className="text-center py-20 bg-card rounded-2xl border border-border/50 shadow-sm">
               <h3 className="text-xl font-medium text-foreground">No items yet</h3>
-              <p className="text-muted-foreground mt-2">Be the first to add something delicious!</p>
             </div>
           ) : (
-            <div className="space-y-16">
+            <div className="space-y-12">
               {['chicha', 'salés', 'jus', 'caffé'].map((category) => {
                 const categoryItems = items?.filter(item => item.category.toLowerCase() === category.toLowerCase());
                 if (!categoryItems || categoryItems.length === 0) return null;
                 
                 return (
-                  <div key={category} className="space-y-8">
-                    <h3 className="text-2xl font-display font-bold border-b pb-2 capitalize">
-                      {category}
+                  <div key={category} className="space-y-6">
+                    <h3 className="text-xl font-display font-bold uppercase tracking-widest text-primary border-none text-left">
+                      {category === 'salés' ? 'Main Courses' : category === 'jus' ? 'Drinks' : category}
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="space-y-4">
                       {categoryItems.map((item) => (
-                        <div key={item.id} className="flex justify-between items-center p-4 border rounded-lg bg-card hover:bg-accent/5 transition-colors">
-                          <div className="space-y-1">
-                            <h4 className="font-bold">{item.name}</h4>
-                            <p className="text-sm text-muted-foreground">{item.description}</p>
+                        <div key={item.id} className="group">
+                          <div className="flex justify-between items-baseline mb-1">
+                            <h4 className="font-bold text-lg text-primary">{item.name}</h4>
+                            <div className="flex-1 mx-2 border-b border-dotted border-primary/20" />
+                            <div className="font-bold text-primary">
+                              ${item.price}
+                            </div>
                           </div>
-                          <div className="text-lg font-bold text-primary">
-                            {item.price} DT
-                          </div>
+                          <p className="text-sm text-muted-foreground leading-tight italic">
+                            {item.description}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -105,11 +102,9 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-secondary/50 border-t border-border mt-auto">
-        <div className="container mx-auto px-4 py-12 text-center text-muted-foreground">
-          <p className="font-display text-lg font-medium text-foreground mb-4">el ostadh</p>
-          <p>© 2024 el ostadh Restaurant. All rights reserved.</p>
-        </div>
+      <footer className="py-12 text-center text-muted-foreground bg-background">
+        <p className="font-display text-sm tracking-widest uppercase text-primary mb-2">el ostadh</p>
+        <p className="text-xs opacity-50">© 2024 el ostadh Restaurant</p>
       </footer>
     </div>
   );

@@ -9,29 +9,29 @@
   --font-display: 'Playfair Display', serif;
   --font-body: 'DM Sans', sans-serif;
 
-  --background: 30 30% 98%;
-  --foreground: 20 10% 15%;
+  --background: 34 25% 91%;
+  --foreground: 20 20% 12%;
   
-  --primary: 0 0% 0%;
+  --primary: 12 40% 25%;
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 0%;
+  --secondary: 34 20% 88%;
+  --secondary-foreground: 20 20% 15%;
   
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
+  --muted: 34 15% 85%;
+  --muted-foreground: 25 15% 35%;
   
-  --accent: 0 0% 10%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 34 20% 80%;
+  --accent-foreground: 20 20% 10%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 30 20% 88%;
-  --input: 30 20% 88%;
-  --ring: 15 85% 55%;
+  --border: 34 15% 82%;
+  --input: 34 15% 82%;
+  --ring: 12 40% 25%;
 
-  --radius: 0.75rem;
+  --radius: 0.25rem;
 }
 
 .dark {
