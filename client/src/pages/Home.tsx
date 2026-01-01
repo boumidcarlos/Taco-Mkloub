@@ -13,42 +13,8 @@ export default function Home() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            {/* Unsplash image: Dark restaurant food background */}
-            <img 
-              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop"
-              alt="Restaurant Ambience"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-          </div>
-          
-          <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-lg"
-            >
-              Taste the Authentic <br/>
-              <span className="text-primary">Tunisian Flavors</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-white/90 font-medium max-w-2xl mx-auto mb-8"
-            >
-              Experience our handcrafted menu featuring traditional spices and modern twists. 
-              Fresh ingredients, unforgettable taste.
-            </motion.p>
-          </div>
-        </section>
-
         {/* Menu Section */}
-        <section className="container mx-auto px-4 md:px-6 py-16 -mt-10 relative z-20">
+        <section className="container mx-auto px-4 md:px-6 py-16 relative z-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
             <div>
               <h2 className="text-3xl font-display font-bold text-foreground">Our Special Menu</h2>
