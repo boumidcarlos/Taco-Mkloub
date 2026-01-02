@@ -71,14 +71,14 @@ export default function Home() {
             </div>
           ) : (
             <div className="space-y-12">
-              {['chicha', 'salés', 'jus', 'caffé'].map((category) => {
+              {['Sandwitch', 'Boissons', 'Chicha', 'Pizza'].map((category) => {
                 const categoryItems = items?.filter(item => item.category.toLowerCase() === category.toLowerCase());
                 if (!categoryItems || categoryItems.length === 0) return null;
                 
                 return (
                   <div key={category} className="space-y-6">
                     <h3 className="text-xl font-display font-bold uppercase tracking-widest text-primary border-none text-left">
-                      {category === 'salés' ? 'Main Courses' : category === 'jus' ? 'Drinks' : category}
+                      {category}
                     </h3>
                     <div className="space-y-4">
                       {categoryItems.map((item) => (
