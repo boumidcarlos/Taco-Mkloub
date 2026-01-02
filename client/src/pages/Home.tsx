@@ -89,9 +89,10 @@ export default function Home() {
                   <div key={category} className="border-b border-primary/10 last:border-0 pb-4">
                     <button 
                       onClick={() => toggleCategory(category)}
-                      className="w-full flex justify-between items-center py-4 text-left group hover-elevate rounded-md px-2 -mx-2 transition-colors"
+                      className="w-full flex justify-between items-center py-4 text-center group hover-elevate rounded-md px-2 -mx-2 transition-colors"
                     >
-                      <h3 className="text-xl font-display font-bold uppercase tracking-widest text-primary">
+                      <div className="w-5" /> {/* Spacer for centering */}
+                      <h3 className="text-xl font-display font-bold uppercase tracking-widest text-primary flex-1">
                         {category}
                       </h3>
                       {isExpanded ? <ChevronUp className="w-5 h-5 text-primary/50" /> : <ChevronDown className="w-5 h-5 text-primary/50" />}
