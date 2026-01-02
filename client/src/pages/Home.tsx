@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans max-w-2xl mx-auto shadow-2xl relative overflow-hidden">
       <div 
-        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 z-0 opacity-100 pointer-events-none"
         style={{ 
           backgroundImage: 'url(/assets/menu-bg.jpg)',
           backgroundSize: 'cover',
