@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { Loader2, QrCode } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Loader2, QrCode, ChevronDown, ChevronUp } from "lucide-react";
 import { useMenuItems } from "@/hooks/use-menu";
 import { MenuCard } from "@/components/MenuCard";
 import { Header } from "@/components/Header";
@@ -17,6 +17,14 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const { data: items, isLoading, error } = useMenuItems();
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+
+  const toggleCategory = (category: string) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans max-w-2xl mx-auto shadow-2xl">
@@ -70,32 +78,55 @@ export default function Home() {
               <h3 className="text-xl font-medium text-foreground">No items yet</h3>
             </div>
           ) : (
-            <div className="space-y-12">
+            <div className="space-y-4">
               {['Sandwitch', 'Boissons', 'Chicha', 'Pizza'].map((category) => {
                 const categoryItems = items?.filter(item => item.category.toLowerCase() === category.toLowerCase());
                 if (!categoryItems || categoryItems.length === 0) return null;
                 
+                const isExpanded = !!expandedCategories[category];
+
                 return (
-                  <div key={category} className="space-y-6">
-                    <h3 className="text-xl font-display font-bold uppercase tracking-widest text-primary border-none text-left">
-                      {category}
-                    </h3>
-                    <div className="space-y-4">
-                      {categoryItems.map((item) => (
-                        <div key={item.id} className="group">
-                          <div className="flex justify-between items-baseline mb-1">
-                            <h4 className="font-bold text-lg text-primary">{item.name}</h4>
-                            <div className="flex-1 mx-2 border-b border-dotted border-primary/20" />
-                            <div className="font-bold text-primary">
-                              {item.price} DT
+                  <div key={category} className="border-b border-primary/10 last:border-0 pb-4">
+                    <button 
+                      onClick={() => toggleCategory(category)}
+                      className="w-full flex justify-between items-center py-4 text-left group hover-elevate rounded-md px-2 -mx-2 transition-colors"
+                    >
+                      <h3 className="text-xl font-display font-bold uppercase tracking-widest text-primary">
+                        {category}
+                      </h3>
+                      {isExpanded ? <ChevronUp className="w-5 h-5 text-primary/50" /> : <ChevronDown className="w-5 h-5 text-primary/50" />}
+                    </button>
+                    
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div 
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="space-y-6 pt-4">
+                            <div className="space-y-4">
+                              {categoryItems.map((item) => (
+                                <div key={item.id} className="group">
+                                  <div className="flex justify-between items-baseline mb-1">
+                                    <h4 className="font-bold text-lg text-primary">{item.name}</h4>
+                                    <div className="flex-1 mx-2 border-b border-dotted border-primary/20" />
+                                    <div className="font-bold text-primary">
+                                      {item.price} DT
+                                    </div>
+                                  </div>
+                                  <p className="text-sm text-muted-foreground leading-tight italic">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              ))}
                             </div>
                           </div>
-                          <p className="text-sm text-muted-foreground leading-tight italic">
-                            {item.description}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 );
               })}
