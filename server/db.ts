@@ -1,14 +1,25 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import pg from "pg";
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import Database from "better-sqlite3";
 import * as schema from "@shared/schema";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const { Pool } = pg;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "DATABASE_URL must be set. Did you forget to provision a database?",
-  );
-}
+const dbPath = path.join(__dirname, "..", "data.db");
+const sqlite = new Database(dbPath);
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-export const db = drizzle(pool, { schema });
+export const db = drizzle(sqlite, { schema });
+
+// Create tables if they don't exist
+sqlite.exec(`
+  CREATE TABLE IF NOT EXISTS menu_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    category TEXT NOT NULL,
+    description TEXT,
+    image_url TEXT
+  )
+`);
